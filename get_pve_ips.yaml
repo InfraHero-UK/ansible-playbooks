@@ -8,6 +8,11 @@
     netbox_token: "{{ netbox_api_token }}"
 
   tasks:
+
+    - name: Set short hostname for NetBox lookup
+      set_fact:
+        netbox_hostname: "{{ inventory_hostname.split('.')[0] }}"
+
     - name: Get primary IP (non-loopback, non-link-local)
       set_fact:
         primary_ip: "{{ ansible_all_ipv4_addresses | reject('match', '^127\\.') | reject('match', '^169\\.254\\.') | list | first }}"
@@ -18,7 +23,7 @@
 
     - name: Get NetBox VM ID by hostname
       uri:
-        url: "{{ netbox_url }}/api/virtualization/virtual-machines/?name={{ inventory_hostname }}"
+        url: "{{ netbox_url }}/api/virtualization/virtual-machines/?name={{ netbox_hostname }}"
         method: GET
         headers:
           Authorization: "Token {{ netbox_token }}"
@@ -28,7 +33,7 @@
 
     - name: Fail if VM not found in NetBox
       fail:
-        msg: "VM {{ inventory_hostname }} not found in NetBox"
+        msg: "VM {{ netbox_hostname }} not found in NetBox"
       when: netbox_vm.json.count == 0
 
     - name: Set NetBox VM ID
