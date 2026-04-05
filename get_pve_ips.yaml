@@ -1,6 +1,6 @@
 ---
 - name: Sync VM IP addresses to NetBox
-  hosts: Linux Servers
+  hosts: "Linux Servers"
   gather_facts: true
 
   vars:
