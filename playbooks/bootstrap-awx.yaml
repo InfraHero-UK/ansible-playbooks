@@ -7,6 +7,7 @@
     awx_user: ansible
 
     awx_pubkey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIITG82Z258M+SNt2ZWxiRF9HB8pvo75oxbxY1dXgi6IO james@Jamess-MacBook.local"
+    personal_pubkey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAp3UcPGRY73Hp5KaeAB8jzEjA2k95kER8+fa+oS+N0b james@infrahero"
 
   tasks:
 
@@ -29,11 +30,26 @@
         user: "{{ awx_user }}"
         key: "{{ awx_pubkey }}"
 
+    - name: Add personal SSH key to ansible user
+      ansible.builtin.authorized_key:
+      user: "{{ awx_user }}"
+      key: "{{ personal_pubkey }}"
+
+    - name: Add James SSH key to root user
+      ansible.builtin.authorized_key:
+      user: root
+      key: "{{ personal_pubkey }}"
+
     - name: Allow passwordless sudo
       ansible.builtin.copy:
         dest: "/etc/sudoers.d/{{ awx_user }}"
         content: "{{ awx_user }} ALL=(ALL) NOPASSWD:ALL"
         mode: '0440'
+    
+    - name: Add James SSH key to root user
+      ansible.builtin.authorized_key:
+      user: root
+      key: "{{ personal_pubkey }}"
 
   handlers:
     - name: restart ssh
