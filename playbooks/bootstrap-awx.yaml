@@ -3,6 +3,7 @@
   hosts: all
   become: yes
   vars:
+    ansible_user: root
     awx_user: ansible
 
     awx_pubkey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIITG82Z258M+SNt2ZWxiRF9HB8pvo75oxbxY1dXgi6IO james@Jamess-MacBook.local"
