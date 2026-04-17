@@ -1,0 +1,21 @@
+# Default connection settings
+ansible_user: ansible
+ansible_become: true
+ansible_become_method: sudo
+
+# SSH behaviour
+ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+
+# Python (safe default for most modern Linux)
+ansible_python_interpreter: /usr/bin/python3
+
+# Fact gathering optimisation
+gather_facts: true
+
+# Timeouts (helps avoid flaky runs)
+ansible_timeout: 30
+ansible_ssh_retries: 3
+
+# General tags / environment markers
+env: infrahero
+owner: infrahero
