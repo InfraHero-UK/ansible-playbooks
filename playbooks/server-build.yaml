@@ -1,0 +1,8 @@
+---
+- name: Build and Harden Server
+  hosts: all
+  become: yes
+
+  roles:
+    - ssh
+    - ssh-harden
