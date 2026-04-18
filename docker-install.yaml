@@ -1,6 +1,14 @@
 ---
 - name: Install Docker
   hosts: all
+  pre_tasks:
+    - name: Show resolved vars
+      ansible.builtin.debug:
+        msg:
+          - "inventory_hostname={{ inventory_hostname }}"
+          - "group_names={{ group_names }}"
+          - "ansible_user={{ ansible_user | default('UNSET') }}"
+          - "personal_user={{ personal_user | default('UNSET') }}"
   become: true
   roles:
     - docker
