@@ -23,10 +23,15 @@ all:
         traefik.hq.infrahero.co.uk: {}
 
     firewalls:
-      hosts:
-        infrahero-pa-01-mgt.hq.infrahero.co.uk: {}
-        opnsense-mgt.hq.infrahero.co.uk: {}
-
+      children:
+        perimeter:
+           hosts:
+            opnsense-mgt.hq.infrahero.co.uk: {}
+      children:
+        internal:
+          hosts:
+            infrahero-pa-01-mgt.hq.infrahero.co.uk: {}
+        
     windows:
       hosts:
         infdc01.hq.infrahero.co.uk: {}

@@ -1,7 +1,7 @@
 ---
 - name: Build and Harden Server
   hosts: all
-  become: yes
+  become: true
 
   roles:
     - ssh
