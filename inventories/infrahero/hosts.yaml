@@ -25,7 +25,7 @@ all:
     firewalls:
       children:
         perimeter:
-           hosts:
+          hosts:
             opnsense-mgt.hq.infrahero.co.uk: {}
       children:
         internal:
