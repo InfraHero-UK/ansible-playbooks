@@ -42,7 +42,3 @@
   ansible.builtin.file:
     path: /tmp/get-docker.sh
     state: absent
-
-- name: Apply group membership changes
-  ansible.builtin.shell:
-    cmd: newgrp docker
