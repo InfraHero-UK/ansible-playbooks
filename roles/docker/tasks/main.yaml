@@ -1,3 +1,8 @@
+- name: Check if Docker is already installed
+  ansible.builtin.stat:
+    path: /usr/bin/docker
+  register: docker_stat
+
 - name: Run docker install script
   ansible.builtin.get_url:
     url: https://get.docker.com
@@ -8,3 +13,38 @@
   ansible.builtin.shell: sh /tmp/get-docker.sh
   args:
     creates: /usr/bin/docker
+  when: docker_stat.stat.exists == false
+
+- name: Ensure docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  ansible.builtin.user:
+    name: "{{ personal_user }}"
+    groups: docker
+    append: true
+
+- name: Add automation user to docker group
+  ansible.builtin.user:
+    name: "{{ awx_user }}"
+    groups: docker
+    append: true
+
+- name: Enable and start docker service
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Clean up docker install script
+  ansible.builtin.file:
+    path: /tmp/get-docker.sh
+    state: absent
+
+- name: Apply group membership changes
+  ansible.builtin.shell:
+    cmd: newgrp docker
+    executable: /bin/bash
+

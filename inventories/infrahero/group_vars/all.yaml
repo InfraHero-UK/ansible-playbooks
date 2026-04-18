@@ -2,6 +2,7 @@
 ansible_user: ansible
 ansible_become: true
 ansible_become_method: sudo
+personal_user: james
 
 # SSH behaviour
 ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
