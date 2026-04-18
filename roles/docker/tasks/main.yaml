@@ -46,4 +46,4 @@
 
 - name: Apply Group Membership Changes with sg
   ansible.builtin.shell: sg docker -c "newgrp docker"
-  when: awx_usermod_result.groups contains 'docker'
+  when: '"docker" in awx_usermod_result.groups'
