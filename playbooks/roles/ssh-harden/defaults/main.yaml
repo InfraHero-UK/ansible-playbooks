@@ -1,4 +1,0 @@
----
-ssh_service_name: ssh
-awx_user: ansible
-personal_user: james

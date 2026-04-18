@@ -1,5 +1,5 @@
 - name: Stage prebuild hosts into runtime groups
-  hosts: prebuild
+  hosts: staging
   gather_facts: false
   tasks:
     - name: Add host to its target runtime group
