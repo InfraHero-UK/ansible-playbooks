@@ -1,6 +1,4 @@
 - name: Stage prebuild hosts into runtime groups
-  hosts: staging
-  gather_facts: false
   tasks:
     - name: Add host to its target runtime group
       ansible.builtin.add_host:

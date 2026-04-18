@@ -1,6 +1,6 @@
 ---
 - name: Bootstrap new Linux server
-  hosts: staging
+  hosts: all
   gather_facts: true
 
   roles:

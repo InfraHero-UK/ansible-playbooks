@@ -21,11 +21,8 @@ all:
         teleport-wds.hq.infrahero.co.uk: {}
         terraform-agent.hq.infrahero.co.uk: {}
         traefik.hq.infrahero.co.uk: {}
-    staging:
-      hosts:
         skylite.hq.infrahero.co.uk: {}
         containerlab.hq.infrahero.co.uk: {}
-
     firewalls:
       children:
         perimeter:
