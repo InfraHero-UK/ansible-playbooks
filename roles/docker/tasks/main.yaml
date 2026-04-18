@@ -46,5 +46,3 @@
 - name: Apply group membership changes
   ansible.builtin.shell:
     cmd: newgrp docker
-    executable: /bin/bash
-
