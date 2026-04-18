@@ -1,0 +1,10 @@
+- name: Stage prebuild hosts into runtime groups
+  hosts: prebuild
+  gather_facts: false
+  tasks:
+    - name: Add host to its target runtime group
+      ansible.builtin.add_host:
+        name: "{{ inventory_hostname }}"
+        groups: "{{ target_group }}"
+        ansible_host: "{{ inventory_hostname }}"
+        desired_hostname: "{{ desired_hostname }}"
