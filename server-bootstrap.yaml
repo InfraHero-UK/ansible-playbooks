@@ -2,6 +2,7 @@
 - name: Bootstrap new Linux server
   hosts: all
   gather_facts: true
+  become: false
 
   roles:
     - ssh
