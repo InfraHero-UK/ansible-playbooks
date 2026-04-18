@@ -6,5 +6,5 @@
       ansible.builtin.add_host:
         name: "{{ inventory_hostname }}"
         groups: "{{ target_group }}"
-        ansible_host: "{{ inventory_hostname }}"
+        ansible_host: "{{ ansible_host | default(inventory_hostname) }}"
         desired_hostname: "{{ desired_hostname }}"

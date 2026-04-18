@@ -14,14 +14,16 @@
 - name: Install AWX public key for automation user
   ansible.posix.authorized_key:
     user: "{{ awx_user }}"
-    key: "{{ lookup('file', 'awx-key.pub') }}"
+    key: "{{ lookup('file', role_path + '/files/awx-key.pub') }}"
     manage_dir: true
+    state: present
 
 - name: Install personal public key for personal user
   ansible.posix.authorized_key:
     user: "{{ personal_user }}"
-    key: "{{ lookup('file', 'id_ed25519.pub') }}"
+    key: "{{ lookup('file', role_path + '/files/id_ed25519.pub') }}"
     manage_dir: true
+    state: present
 
 - name: Allow passwordless sudo for automation user
   ansible.builtin.copy:

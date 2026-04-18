@@ -1,0 +1,9 @@
+---
+- name: Bootstrap new Linux server
+  hosts: staging
+  gather_facts: true
+
+  roles:
+    - hostname
+    - ssh
+    - ssh-harden
