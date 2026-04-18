@@ -28,7 +28,7 @@
 
 - name: Add automation user to docker group
   ansible.builtin.user:
-    name: "{{ awx_user }}"
+    name: "{{ ansible_user }}"
     groups: docker
     append: true
 
