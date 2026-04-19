@@ -1,6 +1,7 @@
 ---
 - name: Run commands on Windows host
   hosts: windows
+  become: false
   gather_facts: false
   tasks:
     - name: Execute a command using win_command
