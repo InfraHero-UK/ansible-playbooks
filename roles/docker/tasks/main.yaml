@@ -20,7 +20,7 @@
     name: docker
     state: present
 
-- name: Add user to docker group
+- name: Add personal user to docker group
   ansible.builtin.user:
     name: "{{ personal_user }}"
     groups: docker
@@ -31,7 +31,6 @@
     name: "{{ ansible_user }}"
     groups: docker
     append: true
-  register: awx_usermod_result
 
 - name: Enable and start docker service
   ansible.builtin.service:
@@ -43,7 +42,3 @@
   ansible.builtin.file:
     path: /tmp/get-docker.sh
     state: absent
-
-- name: Apply Group Membership Changes with sg
-  ansible.builtin.shell: sg docker -c "newgrp docker"
-  when: '"docker" in awx_usermod_result.groups'
