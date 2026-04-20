@@ -23,6 +23,7 @@ all:
         traefik.hq.infrahero.co.uk: {}
         skylite.hq.infrahero.co.uk: {}
         containerlab.hq.infrahero.co.uk: {}
+        wazuh.hq.infrahero.co.uk: {}
     firewalls:
       children:
         perimeter:
