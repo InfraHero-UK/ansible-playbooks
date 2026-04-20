@@ -19,6 +19,6 @@
 
 - name: Start Wazuh Agent Service on Windows Devices
   ansible.windows.win_service:
-    name: Wazuh
+    name: WazuhSvc
+    start_mode: auto
     state: started
-    enabled: true
