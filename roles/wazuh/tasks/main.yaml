@@ -13,7 +13,7 @@
 
 - name: Replace MANAGER_IP with Wazuh manager IP address
   ansible.builtin.lineinfile:
-  path: /var/ossec/etc/ossec.conf
-  regexp: '<address>MANAGER_IP</address>'
-  line: '<address>{{ wazuh_manager_ip }}</address>'
+    path: /var/ossec/etc/ossec.conf
+    regexp: '<address>MANAGER_IP</address>'
+    line: '<address>{{ wazuh_manager_ip }}</address>'
   notify: Start Wazuh agent
