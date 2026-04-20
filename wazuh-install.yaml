@@ -1,10 +1,13 @@
 ---
 - name: Install Wazuh agent
   hosts: all
-  become: true
   tasks:
     - name: Skip excluded hosts
       meta: end_host
       when: exclude_from_wazuh_install | default(false)
   roles:
-    - wazuh
+    - role: wazuh
+      when: ansible_os_family != "Windows"
+
+    - role: wazuh-windows
+      when: ansible_os_family == "Windows"
