@@ -15,7 +15,7 @@
     path: C:\Temp\wazuh-agent-4.14.4-1.msi
     state: present
     arguments:
-      - MANAGER: '{{ wazuh_manager_ip }}'
+      - MANAGER='{{ wazuh_manager_ip }}'
 
 - name: Start Wazuh Agent Service on Windows Devices
   ansible.windows.win_service:
