@@ -17,6 +17,12 @@
     arguments:
       - MANAGER='{{ wazuh_manager_ip }}'
 
+- name: Update ossec.conf with Wazuh manager IP address on Windows Devices
+  ansible.windows.win_xml:
+    path: C:\Program Files (x86)\Wazuh\ossec.conf
+    xpath: //client/manager
+    value: '{{ wazuh_manager_ip }}'
+
 - name: Start Wazuh Agent Service on Windows Devices
   ansible.windows.win_service:
     name: WazuhSvc
