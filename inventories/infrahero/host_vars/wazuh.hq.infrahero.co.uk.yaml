@@ -1,0 +1,2 @@
+wazuh_manager_ip: wazuh.hq.infrahero.co.uk
+exclude_from_wazuh_install: true
