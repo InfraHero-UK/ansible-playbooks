@@ -1,0 +1,6 @@
+---
+- name: Install Wazuh agent
+  hosts: all
+  become: true
+  roles:
+    - wazuh
