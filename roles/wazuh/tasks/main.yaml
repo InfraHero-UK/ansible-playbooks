@@ -11,13 +11,9 @@
     state: present
     update_cache: yes
 
-- name: Reload daemon and start Wazuh agent
-  ansible.builtin.systemd:
-    name: wazuh-agent
-    state: restarted
-    enabled: true
-
-- name: Enable Wazuh agent to start on boot
-  ansible.builtin.systemd:
-    name: wazuh-agent
-    enabled: true
+- name: Replace MANAGER_IP with Wazuh manager IP address
+  ansible.builtin.lineinfile:
+  path: /var/ossec/etc/ossec.conf
+  regexp: '<address>MANAGER_IP</address>'
+  line: '<address>{{ wazuh_manager_ip }}</address>'
+  notify: Start Wazuh agent
