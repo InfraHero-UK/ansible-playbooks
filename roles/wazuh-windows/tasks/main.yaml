@@ -9,7 +9,6 @@
   ansible.windows.win_get_url:
     url: https://packages.wazuh.com/4.x/windows/wazuh-agent-4.14.4-1.msi
     dest: C:\Temp\wazuh-agent-4.14.4-1.msi
-    mode: '0755'
 
 - name: Install Wazuh Agent on Windows Devices
   ansible.windows.win_package:
