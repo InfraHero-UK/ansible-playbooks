@@ -6,3 +6,4 @@ ansible_port: 5985
 ansible_winrm_server_cert_validation: ignore
 ansible_become: false
 ansible_user: "administrator@hq.infrahero.co.uk"
+wazuh_manager_ip: wazuh.hq.infrahero.co.uk
