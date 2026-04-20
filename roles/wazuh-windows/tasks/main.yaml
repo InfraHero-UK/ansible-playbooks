@@ -19,7 +19,7 @@
 
 - name: Update ossec.conf with Wazuh manager IP address on Windows Devices
   ansible.windows.win_xml:
-    path: C:\Program Files (x86)\Wazuh\ossec.conf
+    path: C:\Program Files (x86)\ossec-agent\ossec.conf
     xpath: //client/manager
     value: '{{ wazuh_manager_ip }}'
 
