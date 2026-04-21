@@ -7,6 +7,7 @@ all:
             k8s-controlplane.hq.infrahero.co.uk: {}
             k8s-worker-01.hq.infrahero.co.uk: {}
             k8s-worker-02.hq.infrahero.co.uk: {}
+            k8s-worker-03.hq.infrahero.co.uk: {}
       hosts:
         authentik.hq.infrahero.co.uk: {}
         bunkerweb.hq.infrahero.co.uk: {}
