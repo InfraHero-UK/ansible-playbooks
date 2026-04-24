@@ -31,7 +31,6 @@ all:
         perimeter:
           hosts:
             opnsense-mgt.hq.infrahero.co.uk: {}
-      children:
         internal:
           hosts:
             infrahero-pa-01-mgt.hq.infrahero.co.uk: {}
@@ -40,4 +39,3 @@ all:
         infdc01.hq.infrahero.co.uk: {}
         infdhcp01.hq.infrahero.co.uk: {}
         infmgt01.hq.infrahero.co.uk: {}
-
