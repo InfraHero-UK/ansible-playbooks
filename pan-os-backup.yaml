@@ -10,14 +10,14 @@
       panos_export:
         provider:
           ip_address: 10.0.20.3
-          username: { { pan_os_admin_username } }
-          password: { { pan_os_admin_password } }
+          username: "{{ pan_os_admin_username }}"
+          password: "{{ pan_os_admin_password }}"
         category: configuration
-        filename: /tmp/pan-os-config-{{ date_time }}.xml
+        filename: "/tmp/pan-os-config-{{ date_time }}.xml"
       delegate_to: localhost
 
     - name: Copy PAN-OS configuration to NextExplorer
       ansible.builtin.command:
         cmd: |
-          scp /tmp/pan-os-config-{{ date_time }}.xml {{ pan_os_backup_dest }}
+          scp "/tmp/pan-os-config-{{ date_time }}.xml" "{{ pan_os_backup_dest }}"
       delegate_to: localhost
