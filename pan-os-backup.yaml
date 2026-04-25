@@ -14,8 +14,10 @@
           password: { { pan_os_admin_password } }
         category: configuration
         filename: /tmp/pan-os-config-{{ date_time }}.xml
+      delegate_to: localhost
 
     - name: Copy PAN-OS configuration to NextExplorer
       ansible.builtin.command:
         cmd: |
           scp /tmp/pan-os-config-{{ date_time }}.xml {{ pan_os_backup_dest }}
+      delegate_to: localhost
