@@ -1,0 +1,21 @@
+---
+- name: PAN-OS Backup
+  hosts: all
+  gather_facts: false
+  vars:
+    date_time: "{{ ansible_date_time.date }}"
+    pan_os_backup_dest: ansible@nextexplorer.hq.infrahero.co.uk:'/mnt/data/PAN-OS Backups'
+  tasks:
+    - name: Backup PAN-OS configuration
+      panos_export:
+        provider:
+          ip_address: 10.0.20.3
+          username: { { pan_os_admin_username } }
+          password: { { pan_os_admin_password } }
+        category: configuration
+        filename: /tmp/pan-os-config-{{ date_time }}.xml
+
+    - name: Copy PAN-OS configuration to NextExplorer
+      ansible.builtin.command:
+        cmd: |
+          scp /tmp/pan-os-config-{{ date_time }}.xml {{ pan_os_backup_dest }}
