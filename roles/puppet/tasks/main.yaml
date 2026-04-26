@@ -13,7 +13,7 @@
   get_url:
     url: "https://apt.puppet.com/puppet7-release-{{ lsb_release.stdout }}.deb"
     dest: /tmp/puppet-agent.deb
-  when: lsb_release.stdout == 'noble'
+  when: lsb_release.stdout == 'noble' or lsb_release.stdout == 'focal'
 
 - name: Install puppet7-release .deb package
   apt:
@@ -21,7 +21,7 @@
     state: present
     update_cache: yes
     cache_valid_time: 3600
-  when: lsb_release.stdout == 'noble'
+  when: lsb_release.stdout == 'noble' or lsb_release.stdout == 'focal'
 
 - name: Install Puppet Agent
   apt:
