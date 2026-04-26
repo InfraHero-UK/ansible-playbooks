@@ -43,6 +43,7 @@
 - name: Make a certificate request
   command: sudo /usr/bin/puppet agent -t --server puppet-master-01.hq.infrahero.co.uk
   register: puppet_agent_test
+  ignore_errors: true
 
 - name: Approve the certificate request
   command: sudo /usr/bin/puppetserver ca sign "{{ inventory_hostname }}"
