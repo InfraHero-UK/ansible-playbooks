@@ -46,6 +46,6 @@
   ignore_errors: true
 
 - name: Approve the certificate request
-  command: sudo puppetserver ca sign --all"
+  command: "puppetserver ca sign --all"
   when: puppet_agent_test.changed
   delegate_to: puppet-master-01.hq.infrahero.co.uk
