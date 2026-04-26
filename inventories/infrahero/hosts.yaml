@@ -8,6 +8,11 @@ all:
             k8s-worker-01.hq.infrahero.co.uk: {}
             k8s-worker-02.hq.infrahero.co.uk: {}
             k8s-worker-03.hq.infrahero.co.uk: {}
+        puppet:
+          hosts:
+            puppet-master-01.hq.infrahero.co.uk: {}
+            puppet-node-01.hq.infrahero.co.uk: {}
+            puppet-node-02.hq.infrahero.co.uk: {}
       hosts:
         authentik.hq.infrahero.co.uk: {}
         bunkerweb.hq.infrahero.co.uk: {}
