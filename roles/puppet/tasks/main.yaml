@@ -5,6 +5,18 @@
     line: "10.0.10.33 puppet-master-01.hq.infrahero.co.uk puppet"
     state: present
 
+- name: Download latest .deb package
+  get_url:
+    url: "https://apt.puppet.com/puppet7-release-$(lsb_release -cs).deb"
+    dest: /tmp/puppet-agent.deb
+
+- name: Install puppet7-release .deb package
+  apt:
+    deb: /tmp/puppet-agent.deb
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
 - name: Install Puppet Agent
   apt:
     name: puppet-agent
@@ -14,7 +26,7 @@
 
 - name: Update puppet.conf file
   blockinfile:
-    path: /etc/puppetlabs/puppet/puppet.conf
+    path: /etc/puppet/puppet/puppet.conf
     block: |
       [main]
       certname = "{{ inventory_hostname }}"
