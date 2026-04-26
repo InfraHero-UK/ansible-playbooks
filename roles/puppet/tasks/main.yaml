@@ -41,7 +41,7 @@
     state: present
 
 - name: Make a certificate request
-  command: sudo /opt/puppetlabs/bin/puppet agent -t --server puppet-master-01.hq.infrahero.co.uk
+  command: sudo /usr/bin/puppet agent -t --server puppet-master-01.hq.infrahero.co.uk
   register: puppet_agent_test
 
 - name: Approve the certificate request
