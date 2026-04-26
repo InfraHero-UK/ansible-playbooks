@@ -4,5 +4,7 @@
   vars:
     puppet_config_path: "/etc/puppet/puppet.conf"
     puppet_agent_path: "/usr/bin/puppet"
+    focal_puppet_config_path: "/etc/puppetlabs/puppet/puppet.conf"
+    focal_puppet_agent_path: "/opt/puppetlabs/bin/puppet"
   roles:
     - puppet

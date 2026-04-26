@@ -41,11 +41,32 @@
       [agent]
       runinterval = 5m
     state: present
+    when: lsb_release.stdout != 'focal'
+
+- name: Update puppet.conf file - focal
+  blockinfile:
+    path: "{{ focal_puppet_config_path }}"
+    block: |
+      [main]
+      certname = "{{ inventory_hostname }}"
+      server = puppet-master-01.hq.infrahero.co.uk
+
+      [agent]
+      runinterval = 5m
+    state: present
+    when: lsb_release.stdout == 'focal'
 
 - name: Make a certificate request
   command: sudo {{ puppet_agent_path }} agent -t --server puppet-master-01.hq.infrahero.co.uk
   register: puppet_agent_test
   ignore_errors: true
+  when: lsb_release.stdout != 'focal'
+
+- name: Make a certificate request - focal
+  command: sudo {{ focal_puppet_agent_path }} agent -t --server puppet-master-01.hq.infrahero.co.uk
+  register: puppet_agent_test_focal
+  ignore_errors: true
+  when: lsb_release.stdout == 'focal'
 
 - name: Approve the certificate request
   command: "puppetserver ca sign --all"
