@@ -30,7 +30,7 @@
 
 - name: Update puppet.conf file
   blockinfile:
-    path: /etc/puppet/puppet/puppet.conf
+    path: /etc/puppet/puppet.conf
     block: |
       [main]
       certname = "{{ inventory_hostname }}"
