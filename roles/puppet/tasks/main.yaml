@@ -1,4 +1,8 @@
 ---
+- name: Grab LSB Release from shell
+  shell: lsb_release -cs
+  register: lsb_release
+
 - name: Update /etc/hosts
   lineinfile:
     path: /etc/hosts
@@ -7,7 +11,7 @@
 
 - name: Download latest .deb package
   get_url:
-    url: "https://apt.puppet.com/puppet7-release-$(lsb_release -cs).deb"
+    url: "https://apt.puppet.com/puppet7-release-{{ lsb_release.stdout }}.deb"
     dest: /tmp/puppet-agent.deb
 
 - name: Install puppet7-release .deb package
