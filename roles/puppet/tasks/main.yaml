@@ -41,7 +41,7 @@
       [agent]
       runinterval = 5m
     state: present
-    when: lsb_release.stdout != 'focal'
+  when: lsb_release.stdout != 'focal'
 
 - name: Update puppet.conf file - focal
   blockinfile:
@@ -54,7 +54,7 @@
       [agent]
       runinterval = 5m
     state: present
-    when: lsb_release.stdout == 'focal'
+  when: lsb_release.stdout == 'focal'
 
 - name: Make a certificate request
   command: sudo {{ puppet_agent_path }} agent -t --server puppet-master-01.hq.infrahero.co.uk
