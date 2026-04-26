@@ -1,5 +1,8 @@
 ---
 - name: Install Puppet Agent
   hosts: all
+  vars:
+    puppet_config_path: "/etc/puppet/puppet.conf"
+    puppet_agent_path: "/usr/bin/puppet"
   roles:
     - puppet

@@ -13,6 +13,7 @@
   get_url:
     url: "https://apt.puppet.com/puppet7-release-{{ lsb_release.stdout }}.deb"
     dest: /tmp/puppet-agent.deb
+  when: lsb_release.stdout == 'noble'
 
 - name: Install puppet7-release .deb package
   apt:
@@ -20,6 +21,7 @@
     state: present
     update_cache: yes
     cache_valid_time: 3600
+  when: lsb_release.stdout == 'noble'
 
 - name: Install Puppet Agent
   apt:
@@ -30,7 +32,7 @@
 
 - name: Update puppet.conf file
   blockinfile:
-    path: /etc/puppet/puppet.conf
+    path: "{{ puppet_config_path }}"
     block: |
       [main]
       certname = "{{ inventory_hostname }}"
@@ -41,7 +43,7 @@
     state: present
 
 - name: Make a certificate request
-  command: sudo /usr/bin/puppet agent -t --server puppet-master-01.hq.infrahero.co.uk
+  command: sudo {{ puppet_agent_path }} agent -t --server puppet-master-01.hq.infrahero.co.uk
   register: puppet_agent_test
   ignore_errors: true
 
