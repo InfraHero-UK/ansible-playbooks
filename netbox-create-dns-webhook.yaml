@@ -14,7 +14,18 @@
       win_dns_record:
         name: "{{ netbox_data.name }}"
         value: "{{ netbox_data.value }}"
-        type: A
+        type: "{{ netbox_data.type }}"
         zone: "{{ netbox_data.zone.name }}"
         state: present
       delegate_to: infdc01.hq.infrahero.co.uk
+      when: netbox_data.zone.view.name == "Internal" and netbox_event == "created"
+
+    - name: Add DNS Record to Cloudflare
+      community.general.cloudflare_dns:
+        record: "{{ netbox_data.name }}"
+        value: "{{ netbox_data.value }}"
+        type: "{{ netbox_data.type }}"
+        zone: "{{ netbox_data.zone.name }}"
+        state: present
+        api_token: "{{ cloudflare_api_token }}"
+      when: netbox_data.zone.view.name == "External" and netbox_event == "created"
