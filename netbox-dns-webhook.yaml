@@ -21,6 +21,7 @@
       when: netbox_data.zone.view.name == "Internal" and netbox_event == "created" and netbox_object_type == "netbox_dns.record"
 
     - name: Add DNS Record to Cloudflare
+      become: false
       community.general.cloudflare_dns:
         record: "{{ netbox_data.name }}"
         value: "{{ netbox_data.value }}"
@@ -41,6 +42,7 @@
       when: netbox_data.zone.view.name == "Internal" and netbox_event == "deleted" and netbox_object_type == "netbox_dns.record"
 
     - name: Remove DNS Record from Cloudflare
+      become: false
       community.general.cloudflare_dns:
         record: "{{ netbox_data.name }}"
         value: "{{ netbox_data.value }}"
