@@ -1,8 +1,7 @@
 ---
 - name: Test Webhook from Netbox
   hosts: localhost
-  vars:
-    data: "{{ request.json }}"
+  become: false
   tasks:
     - name: Debug DNS Record
       debug:
