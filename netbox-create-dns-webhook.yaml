@@ -4,7 +4,8 @@
   connection: local
   gather_facts: false
   become: false
+
   tasks:
     - name: Debug DNS Record
       debug:
-        var: vars
+        msg: "Zone: {{ netbox_data.zone.name }}"
