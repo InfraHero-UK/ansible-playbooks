@@ -34,7 +34,6 @@
     - name: Remove DNS Record from Domain Controller DNS
       win_dns_record:
         name: "{{ netbox_data.name }}"
-        value: "{{ netbox_data.value }}"
         type: "{{ netbox_data.type }}"
         zone: "{{ netbox_data.zone.name }}"
         state: absent
