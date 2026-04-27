@@ -1,0 +1,8 @@
+stages:
+  - update
+update:
+  stage: update
+  script:
+    - curl -X POST --user "gitlab:${GITLAB_TOKEN}" https://awx.infrahero.co.uk/api/v2/projects/18/update/ -k -L
+  only:
+    - main
