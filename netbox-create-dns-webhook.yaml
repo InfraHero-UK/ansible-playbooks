@@ -8,4 +8,12 @@
   tasks:
     - name: Debug DNS Record
       debug:
-        msg: "Zone: {{ data.zone.name }}"
+        msg: "Zone: {{ netboxdata.zone.name }}\nName: {{ netboxdata.name }}\nValue: {{ netboxdata.value }}"
+
+    - name: Add DNS Record to Domain Controller DNS
+      win_dns_record:
+        name: "{{ netboxdata.name }}"
+        value: "{{ netboxdata.value }}"
+        type: A
+        zone: "{{ netboxdata.zone.name }}"
+        state: present
