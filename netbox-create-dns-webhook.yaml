@@ -7,4 +7,4 @@
   tasks:
     - name: Debug DNS Record
       debug:
-        msg: "{{ data.name }}"
+        msg: "Zone: {{ data.zone.name }}"
