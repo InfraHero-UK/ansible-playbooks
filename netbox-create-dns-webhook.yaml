@@ -8,12 +8,13 @@
   tasks:
     - name: Debug DNS Record
       debug:
-        msg: "Zone: {{ netboxdata.zone.name }}\nName: {{ netboxdata.name }}\nValue: {{ netboxdata.value }}"
+        msg: "Zone: {{ netbox_data.zone.name }}\nName: {{ netbox_data.name }}\nValue: {{ netbox_data.value }}"
 
     - name: Add DNS Record to Domain Controller DNS
       win_dns_record:
-        name: "{{ netboxdata.name }}"
-        value: "{{ netboxdata.value }}"
+        name: "{{ netbox_data.name }}"
+        value: "{{ netbox_data.value }}"
         type: A
-        zone: "{{ netboxdata.zone.name }}"
+        zone: "{{ netbox_data.zone.name }}"
         state: present
+      delegate_to: infdc01.hq.infrahero.co.uk
