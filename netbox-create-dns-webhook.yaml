@@ -18,7 +18,7 @@
         zone: "{{ netbox_data.zone.name }}"
         state: present
       delegate_to: infdc01.hq.infrahero.co.uk
-      when: netbox_data.zone.view.name == "Internal" and netbox_event == "created"
+      when: netbox_data.zone.view.name == "Internal" and netbox_event == "created" and netbox_object_type == "netbox_dns.record"
 
     - name: Add DNS Record to Cloudflare
       community.general.cloudflare_dns:
@@ -28,4 +28,24 @@
         zone: "{{ netbox_data.zone.name }}"
         state: present
         api_token: "{{ cloudflare_api_token }}"
-      when: netbox_data.zone.view.name == "External" and netbox_event == "created"
+      when: netbox_data.zone.view.name == "External" and netbox_event == "created" and netbox_object_type == "netbox_dns.record"
+
+    - name: Remove DNS Record from Domain Controller DNS
+      win_dns_record:
+        name: "{{ netbox_data.name }}"
+        value: "{{ netbox_data.value }}"
+        type: "{{ netbox_data.type }}"
+        zone: "{{ netbox_data.zone.name }}"
+        state: absent
+      delegate_to: infdc01.hq.infrahero.co.uk
+      when: netbox_data.zone.view.name == "Internal" and netbox_event == "deleted" and netbox_object_type == "netbox_dns.record"
+
+    - name: Remove DNS Record from Cloudflare
+      community.general.cloudflare_dns:
+        record: "{{ netbox_data.name }}"
+        value: "{{ netbox_data.value }}"
+        type: "{{ netbox_data.type }}"
+        zone: "{{ netbox_data.zone.name }}"
+        state: absent
+        api_token: "{{ cloudflare_api_token }}"
+      when: netbox_data.zone.view.name == "External" and netbox_event == "deleted" and netbox_object_type == "netbox_dns.record"
