@@ -51,3 +51,4 @@ all:
         infdc01.hq.infrahero.co.uk: {}
         infdhcp01.hq.infrahero.co.uk: {}
         infmgt01.hq.infrahero.co.uk: {}
+        infaut01.hq.infrahero.co.uk: {}
