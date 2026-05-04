@@ -37,6 +37,7 @@ all:
         gitlab.hq.infrahero.co.uk: {}
         vymanager.hq.infrahero.co.uk: {}
         couchdb.hq.infrahero.co.uk: {}
+        elastic.hq.infrahero.co.uk: {}
     firewalls:
       children:
         perimeter:
