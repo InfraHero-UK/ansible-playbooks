@@ -17,7 +17,6 @@ all:
         gns3.hq.infrahero.co.uk: {}
         netbox.hq.infrahero.co.uk: {}
         nextexplorer.hq.infrahero.co.uk: {}
-        openclaw.hq.infrahero.co.uk: {}
         traefik.hq.infrahero.co.uk: {}
         wazuh.hq.infrahero.co.uk: {}
         gitlab.hq.infrahero.co.uk: {}
