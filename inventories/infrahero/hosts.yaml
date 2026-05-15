@@ -23,6 +23,7 @@ all:
         couchdb.hq.infrahero.co.uk: {}
         grafana.hq.infrahero.co.uk: {}
         dockhand.hq.infrahero.co.uk: {}
+        stalwart.hq.infrahero.co.uk: {}
     firewalls:
       children:
         perimeter:
