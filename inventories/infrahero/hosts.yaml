@@ -25,6 +25,7 @@ all:
         dockhand.hq.infrahero.co.uk: {}
         stalwart.hq.infrahero.co.uk: {}
         xyops.hq.infrahero.co.uk: {}
+        containerlab.hq.infrahero.co.uk: {}
     firewalls:
       children:
         perimeter:
